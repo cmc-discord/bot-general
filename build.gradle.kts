@@ -7,6 +7,7 @@ plugins {
 	kotlin("plugin.serialization")
 
 	id("com.github.johnrengelman.shadow")
+	id("dev.yumi.gradle.licenser")
 	id("io.gitlab.arturbosch.detekt")
 }
 
@@ -31,7 +32,8 @@ repositories {
 dependencies {
 	detektPlugins(libs.detekt)
 
-	implementation(libs.kord.extensions)
+	implementation(libs.bundles.kordex)
+
 	implementation(libs.kotlin.stdlib)
 	implementation(libs.kx.ser)
 
@@ -72,4 +74,10 @@ detekt {
 	buildUponDefaultConfig = true
 
 	config.from(rootProject.files("detekt.yml"))
+}
+
+license {
+	rule(
+		file("codeformat/HEADER")
+	)
 }
