@@ -17,6 +17,8 @@ jansi = { module = "org.fusesource.jansi:jansi", version.ref = "jansi" }
 
 kordex = { module = "com.kotlindiscord.kord.extensions:kord-extensions", version.ref = "kord-extensions" }
 
+kordex-adapter-mongodb = { module = "com.kotlindiscord.kord.extensions:adapter-mongodb", version.ref = "kord-extensions" }
+
 kordex-phishing = { module = "com.kotlindiscord.kord.extensions:extra-phishing", version.ref = "kord-extensions" }
 kordex-pluralkit = { module = "com.kotlindiscord.kord.extensions:extra-pluralkit", version.ref = "kord-extensions" }
 kordex-tags = { module = "com.kotlindiscord.kord.extensions:extra-tags", version.ref = "kord-extensions" }
@@ -31,6 +33,9 @@ logging = { module = "io.github.oshai:kotlin-logging", version.ref = "logging" }
 [bundles]
 kordex = [
 	"kordex",
+
+	"kordex-adapter-mongodb",
+
 	"kordex-phishing",
 	"kordex-pluralkit",
 	"kordex-tags",

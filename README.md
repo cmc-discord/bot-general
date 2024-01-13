@@ -1,54 +1,28 @@
-# KordEx Bot Template
+# CMC Bot: General
 
-This repository contains a basic KordEx example bot for you to use as a template for your own KordEx bots. This
-includes the following:
+This Discord bot provides moderation tooling and general-purpose features for the Community Management Community
+Discord server.
 
-* A basic extension that allows you to slap other people, using both message commands and slash commands.
-* A basic bot configuration that enables slash commands and shows you how to conditionally provide a different
-  message command prefix for different guilds.
-* A Gradle Kotlin build script that uses the Kotlin Discord public maven repo, Detekt for linting (with a
-  fairly strict configuration) and a Git commit hook plugin that runs Detekt when you make a commit - this uses Gradle
-  7's new version catalog feature, for easy configuration of dependencies.
-* GitHub CI scripts that build the bot and publish its artefacts.
-* A reasonable `.gitignore` file, including one in the `.idea` folder that ignores files that you shouldn't commit -
-  if you're using IDEA yourself, you should install the Ignore plugin to handle changes to this for you.
-* A Groovy-based Logback config, so you've reasonable logging out of the box.
+# Development
 
-**Note:** This template includes a `.editorconfig` file that defaults to using tabs for indentation in almost all file
-types. This is because tabs are more accessible for the blind, or those with impaired vision. We won't accept
-feedback or PRs targeting this approach.
+Bot development requires the following:
 
-## Potential Changes
+- An IDE that can work with Kotlin and Gradle,
+  such as [IntelliJ IDEA](https://www.jetbrains.com/idea/download/?section=windows)
+  (scroll down for the community edition)
+- A JDK, version 17 or later, such as [Adoptium](https://adoptium.net/)
+- A MongoDB server for testing, such as [the community server](https://www.mongodb.com/try/download/community)
 
-* The `.yml` files in `.github/` are used to configure GitHub apps. If you're not using them, you can remove them.
-* The provided `LICENSE` file contains The Unlicense, which makes this repository public domain. You will probably want
-  to change this - we suggest looking at [Choose a License](https://choosealicense.com/) if you're not sure where to start.
-* In the `build.gradle.kts`:
-	* Set the `group` and `version` properties as appropriate.
-	* If you're not using this to test KordEx builds, you can remove the `mavenLocal()` from the `repositories` block.
-	* In the `application` and `tasks.jar` blocks, update the main class path/name as appropriate.
-	* To target a newer/older Java version, change the options in the `KotlinCompile` configuration and `java` blocks
-* In the `settings.gradle.kts`, update the name of the root project as appropriate.
-* The bundled Detekt config is pretty strict - you can check over `detekt.yml` if you want to change it, but you need to
-  follow the TODOs in that file regardless.
-* The Logback configuration is in `src/main/resources/logback.groovy`. If the logging setup doesn't suit, you can change
-  it there.
+To test the bot, copy `.env.example` to `.env`, fill it out, and use Gradle to execute the `run` task.
 
-## Bundled Bot
+For your convenience, this project includes run configurations for IntelliJ IDEA.
 
-* `App.kt` includes a basic bot, which uses environment variables (or variables in a `.env` file) for the testing guild
-  ID (`TEST_SERVER`) and the bot's token (`TOKEN`). You can specify these either directly as environment variables, or
-  as `KEY=value` pairs in a file named `.env`. Some example code is also included that shows one potential way of
-  providing different command prefixes for different servers.
-* `TestExtension.kt` includes an example extension that creates a `slap` command - this command works as both a
-  message command and slash command, and allows you to slap other users with whatever you wish, defaulting to a
-  `large, smelly trout`.
+# Deployment
 
-To test the bot, we recommend using a `.env` file that looks like the following:
+To deploy this bot, use the provided `docker-compose.yml` file, providing the following environmental variables:
 
-```dotenv
-TOKEN=abc...
-TEST_SERVER=123...
-```
+- `DB_USERNAME`: Username to use for the MongoDB root account, automatically created if it doesn't exist.
+- `DB_PASSWORD`: Password for the root account.
+- `TOKEN`: Your Discord bot token.
 
-Create this file, fill it out, and run the `run` gradle task for testing in development.
+You can use something like [Watchtower](https://containrrr.dev/watchtower/) to keep the bot up to date.

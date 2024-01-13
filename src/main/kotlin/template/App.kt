@@ -7,6 +7,7 @@
 package template
 
 import com.kotlindiscord.kord.extensions.ExtensibleBot
+import com.kotlindiscord.kord.extensions.adapters.mongodb.mongoDB
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.DetectionAction
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.extPhishing
 import com.kotlindiscord.kord.extensions.modules.extra.pluralkit.extPluralKit
@@ -29,6 +30,8 @@ suspend fun main() {
 
 			// TODO: Tags/Welcome when storage is sorted out
 		}
+
+		mongoDB()
 	}
 
 	bot.start()

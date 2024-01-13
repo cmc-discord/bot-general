@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  cmc-general-bot:
+    image: ghcr.io/cmc-discord/bot-general:latest
+    container_name: cmc-general-bot
+
+    restart: always
+
+    environment:
+      - "ADAPTER_MONGODB_URI=mongodb://${DB_USERNAME}:${DB_PASSWORD}@cmc-general-bot-db/"
+
+      - TOKEN
+
+  cmc-general-bot-db:
+    image: mongo
+    container_name: cmc-general-bot-db
+
+    restart: always
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${DB_USERNAME}"
+      MONGO_INITDB_ROOT_PASSWORD: "${DB_PASSWORD}"
