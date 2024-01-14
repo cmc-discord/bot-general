@@ -33,6 +33,7 @@ dependencies {
 	detektPlugins(libs.detekt)
 
 	implementation(libs.bundles.kordex)
+	implementation(libs.bundles.mongodb)
 
 	implementation(libs.kotlin.stdlib)
 	implementation(libs.kx.ser)

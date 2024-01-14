@@ -12,6 +12,7 @@ import com.kotlindiscord.kord.extensions.modules.extra.phishing.DetectionAction
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.extPhishing
 import com.kotlindiscord.kord.extensions.modules.extra.pluralkit.extPluralKit
 import com.kotlindiscord.kord.extensions.utils.env
+import template.db.MongoDB
 
 private val TOKEN = env("TOKEN")   // Get the bot's token from the env vars, or a .env file.
 
@@ -29,6 +30,12 @@ suspend fun main() {
 			extPluralKit()
 
 			// TODO: Tags/Welcome when storage is sorted out
+		}
+
+		hooks {
+			beforeKoinSetup {
+				MongoDB.setup()
+			}
 		}
 
 		mongoDB()
