@@ -4,18 +4,27 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package template
+package wiki.moderator.bot.general
 
 import com.kotlindiscord.kord.extensions.ExtensibleBot
 import com.kotlindiscord.kord.extensions.adapters.mongodb.mongoDB
+import com.kotlindiscord.kord.extensions.checks.hasRole
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.DetectionAction
 import com.kotlindiscord.kord.extensions.modules.extra.phishing.extPhishing
 import com.kotlindiscord.kord.extensions.modules.extra.pluralkit.extPluralKit
+import com.kotlindiscord.kord.extensions.modules.extra.tags.tags
+import com.kotlindiscord.kord.extensions.modules.extra.welcome.welcomeChannel
 import com.kotlindiscord.kord.extensions.utils.env
-import template.db.MongoDB
+import dev.kord.common.entity.Snowflake
+import dev.kord.core.behavior.channel.asChannelOfOrNull
+import kotlinx.coroutines.flow.firstOrNull
+import wiki.moderator.bot.general.db.MongoDB
+import wiki.moderator.bot.general.db.entities.TagEntity
+import wiki.moderator.bot.general.db.entities.WelcomeChannelEntity
 
 private val TOKEN = env("TOKEN")   // Get the bot's token from the env vars, or a .env file.
 
+@Suppress("StringLiteralDuplication")
 suspend fun main() {
 	val bot = ExtensibleBot(TOKEN) {
 		extensions {
@@ -29,7 +38,25 @@ suspend fun main() {
 
 			extPluralKit()
 
-			// TODO: Tags/Welcome when storage is sorted out
+			tags(TagEntity) {
+				loggingChannelName = "app-bot-general"
+
+				staffCommandCheck {
+					hasRole(Snowflake("1131547978331590808"))
+				}
+			}
+
+			welcomeChannel(WelcomeChannelEntity) {
+				getLogChannel { _, guild ->
+					guild.channels.firstOrNull {
+						it.name.equals("app-bot-general", ignoreCase = true)
+					}?.asChannelOfOrNull()
+				}
+
+				staffCommandCheck {
+					hasRole(Snowflake("1131547978331590808"))
+				}
+			}
 		}
 
 		hooks {

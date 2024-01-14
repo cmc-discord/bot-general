@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package template.db.entities
+package wiki.moderator.bot.general.db.entities
 
 import com.mongodb.client.model.Filters.eq
 import com.mongodb.client.model.ReplaceOptions
@@ -13,47 +13,47 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.bson.codecs.kotlinx.KotlinSerializerCodec
-import template.db.MongoDB
+import wiki.moderator.bot.general.db.MongoDB
 
 @Serializable
 @Suppress("DataClassContainsFunctions", "DataClassShouldBeImmutable")
-internal data class Metadata(
+internal data class MetadataEntity(
 	@Contextual
 	override val _id: String,
 
 	var version: Int,
 ) : Entity<String> {
 	suspend inline fun save(): UpdateResult =
-		Companion.save(this)
+		save(this)
 
 	companion object {
 		const val COLLECTION_NAME: String = "metadata"
 
-		val codec = KotlinSerializerCodec.create<Metadata>()
+		val codec = KotlinSerializerCodec.create<MetadataEntity>()
 
-		private val Filters = object {
+		private val FilterFunctions = object {
 			fun byId(id: String) =
-				eq(Metadata::_id.name, id)
+				eq(MetadataEntity::_id.name, id)
 		}
 
 		private val collection by lazy {
-			MongoDB.getCollection<Metadata>(COLLECTION_NAME)
+			MongoDB.getCollection<MetadataEntity>(COLLECTION_NAME)
 		}
 
 		suspend fun get(id: String): Int? =
 			collection
-				.find<Metadata>(Filters.byId(id))
+				.find<MetadataEntity>(FilterFunctions.byId(id))
 				.limit(1)
 				.firstOrNull()
 				?.version
 
 		suspend fun set(id: String, version: Int): UpdateResult =
-			save(Metadata(id, version))
+			save(MetadataEntity(id, version))
 
-		suspend fun save(document: Metadata): UpdateResult =
+		suspend fun save(document: MetadataEntity): UpdateResult =
 			collection
 				.replaceOne(
-					Filters.byId(document._id),
+					FilterFunctions.byId(document._id),
 					document,
 					ReplaceOptions().upsert(true)
 				)

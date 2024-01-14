@@ -12,6 +12,12 @@ if (environment == "dev") {
 
 	// Silence warning about missing native PRNG
 	logger("io.ktor.util.random", ERROR)
+
+	// Make MongoDB less noisy
+	logger("org.mongodb.driver.cluster", INFO)
+	logger("org.mongodb.driver.connection", INFO)
+	logger("org.mongodb.driver.operation", INFO)
+	logger("org.mongodb.driver.protocol.command", INFO)
 }
 
 appender("CONSOLE", ConsoleAppender) {
