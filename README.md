@@ -25,4 +25,6 @@ To deploy this bot, use the provided `docker-compose.yml` file, providing the fo
 - `DB_PASSWORD`: Password for the root account.
 - `TOKEN`: Your Discord bot token.
 
+You may wish to update the `volumes` section for the database container.
+
 You can use something like [Watchtower](https://containrrr.dev/watchtower/) to keep the bot up to date.
