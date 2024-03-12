@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package wiki.moderator.bot.general.db.entities
+package wiki.moderation.bot.general.db.entities
 
 import com.kotlindiscord.kord.extensions.modules.extra.tags.data.Tag
 import com.kotlindiscord.kord.extensions.modules.extra.tags.data.TagsData
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.serialization.Serializable
 import org.bson.codecs.kotlinx.KotlinSerializerCodec
 import org.bson.conversions.Bson
-import wiki.moderator.bot.general.db.MongoDB
+import wiki.moderation.bot.general.db.MongoDB
 
 @Serializable
 @Suppress("DataClassContainsFunctions", "DataClassShouldBeImmutable")

@@ -4,13 +4,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package wiki.moderator.bot.general.db
+package wiki.moderation.bot.general.db
 
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import mu.KotlinLogging
-import wiki.moderator.bot.general.db.entities.MetadataEntity
-import wiki.moderator.bot.general.db.entities.TagEntity
-import wiki.moderator.bot.general.db.entities.WelcomeChannelEntity
+import wiki.moderation.bot.general.db.entities.MetadataEntity
+import wiki.moderation.bot.general.db.entities.TagEntity
+import wiki.moderation.bot.general.db.entities.WelcomeChannelEntity
 
 private const val META_NAME: String = "db-version "
 

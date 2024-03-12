@@ -11,7 +11,7 @@ plugins {
 	id("io.gitlab.arturbosch.detekt")
 }
 
-group = "wiki.moderator"
+group = "wiki.moderation"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -47,7 +47,7 @@ dependencies {
 }
 
 application {
-	mainClass.set("wiki.moderator.bot.general.AppKt")
+	mainClass.set("wiki.moderation.bot.general.AppKt")
 }
 
 tasks.withType<KotlinCompile> {
@@ -60,7 +60,7 @@ tasks.withType<KotlinCompile> {
 tasks.jar {
 	manifest {
 		attributes(
-			"Main-Class" to "wiki.moderator.bot.general.AppKt"
+			"Main-Class" to "wiki.moderation.bot.general.AppKt"
 		)
 	}
 }

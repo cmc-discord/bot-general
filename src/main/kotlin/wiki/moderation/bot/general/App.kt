@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package wiki.moderator.bot.general
+package wiki.moderation.bot.general
 
 import com.kotlindiscord.kord.extensions.ExtensibleBot
 import com.kotlindiscord.kord.extensions.adapters.mongodb.mongoDB
@@ -15,12 +15,13 @@ import com.kotlindiscord.kord.extensions.modules.extra.pluralkit.extPluralKit
 import com.kotlindiscord.kord.extensions.modules.extra.tags.tags
 import com.kotlindiscord.kord.extensions.modules.extra.welcome.welcomeChannel
 import com.kotlindiscord.kord.extensions.utils.env
+import com.kotlindiscord.kord.extensions.utils.envOrNull
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.channel.asChannelOfOrNull
 import kotlinx.coroutines.flow.firstOrNull
-import wiki.moderator.bot.general.db.MongoDB
-import wiki.moderator.bot.general.db.entities.TagEntity
-import wiki.moderator.bot.general.db.entities.WelcomeChannelEntity
+import wiki.moderation.bot.general.db.MongoDB
+import wiki.moderation.bot.general.db.entities.TagEntity
+import wiki.moderation.bot.general.db.entities.WelcomeChannelEntity
 
 private val TOKEN = env("TOKEN")   // Get the bot's token from the env vars, or a .env file.
 
@@ -56,6 +57,10 @@ suspend fun main() {
 				staffCommandCheck {
 					hasRole(Snowflake("1131547978331590808"))
 				}
+			}
+
+			sentry {
+				enableIfDSN(envOrNull("SENTRY_DSN"))
 			}
 		}
 

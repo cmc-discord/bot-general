@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package wiki.moderator.bot.general.db
+package wiki.moderation.bot.general.db
 
 import com.kotlindiscord.kord.extensions.adapters.mongodb.kordExCodecRegistry
 import com.kotlindiscord.kord.extensions.utils.env
@@ -16,9 +16,9 @@ import org.bson.BsonInt64
 import org.bson.Document
 import org.bson.codecs.configuration.CodecRegistries
 import org.bson.codecs.configuration.CodecRegistry
-import wiki.moderator.bot.general.db.entities.MetadataEntity
-import wiki.moderator.bot.general.db.entities.TagEntity
-import wiki.moderator.bot.general.db.entities.WelcomeChannelEntity
+import wiki.moderation.bot.general.db.entities.MetadataEntity
+import wiki.moderation.bot.general.db.entities.TagEntity
+import wiki.moderation.bot.general.db.entities.WelcomeChannelEntity
 
 object MongoDB {
 	private val logger = KotlinLogging.logger { }

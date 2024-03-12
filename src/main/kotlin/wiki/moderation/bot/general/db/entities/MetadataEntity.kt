@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package wiki.moderator.bot.general.db.entities
+package wiki.moderation.bot.general.db.entities
 
 import com.mongodb.client.model.Filters.eq
 import com.mongodb.client.model.ReplaceOptions
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.bson.codecs.kotlinx.KotlinSerializerCodec
-import wiki.moderator.bot.general.db.MongoDB
+import wiki.moderation.bot.general.db.MongoDB
 
 @Serializable
 @Suppress("DataClassContainsFunctions", "DataClassShouldBeImmutable")
