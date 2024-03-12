@@ -9,6 +9,7 @@ plugins {
 	id("com.github.johnrengelman.shadow")
 	id("dev.yumi.gradle.licenser")
 	id("io.gitlab.arturbosch.detekt")
+	id("io.sentry.jvm.gradle")
 }
 
 group = "wiki.moderation"
@@ -81,4 +82,16 @@ license {
 	rule(
 		file("codeformat/HEADER")
 	)
+}
+
+if (System.getenv().containsKey("SENTRY_AUTH_TOKEN")) {
+	sentry {
+		includeSourceContext = true
+
+		org = "community-management-community"
+		projectName = "bot-general"
+		authToken = System.getenv("SENTRY_AUTH_TOKEN")
+	}
+} else {
+	logger.info("Not sending sources to Sentry as the 'SENTRY_AUTH_TOKEN' env var isn't set.")
 }
