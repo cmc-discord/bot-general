@@ -86,7 +86,12 @@ license {
 
 if (System.getenv().containsKey("SENTRY_AUTH_TOKEN")) {
 	sentry {
+		debug = true
 		includeSourceContext = true
+
+		additionalSourceDirsForSourceContext.set(
+			listOf("src/main/kotlin")
+		)
 
 		org = "community-management-community"
 		projectName = "bot-general"
