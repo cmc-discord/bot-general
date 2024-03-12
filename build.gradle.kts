@@ -55,7 +55,7 @@ tasks.withType<KotlinCompile> {
 	// Current LTS version of Java
 	kotlinOptions.jvmTarget = "17"
 
-	kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+	kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
 }
 
 tasks.jar {
@@ -86,7 +86,6 @@ license {
 
 if (System.getenv().containsKey("SENTRY_AUTH_TOKEN")) {
 	sentry {
-		debug = true
 		includeSourceContext = true
 
 		org = "community-management-community"
