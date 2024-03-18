@@ -8,7 +8,7 @@ pluginManagement {
 		id("io.gitlab.arturbosch.detekt") version "1.23.4"
 		id("io.sentry.jvm.gradle") version "4.3.1"
 
-		id("com.github.jakemarsden.git-hooks") version "0.0.1"
+		id("com.github.jakemarsden.git-hooks") version "0.0.2"
 		id("com.github.johnrengelman.shadow") version "8.1.1"
 
 		id("dev.yumi.gradle.licenser") version "1.0.+"
